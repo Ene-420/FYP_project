@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.SearchFragment">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friend Requests:"
+        android:textStyle="bold"
+        android:id="@+id/requestText"
+        android:textColor="@color/purple"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/user_request_count"
+        android:fontFamily="@font/comic_neue_bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@color/purple"
+        android:fontFamily="@font/comic_neue_bold"
+        android:id="@+id/user_request_count"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_alignParentEnd="true"
+        />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:id="@+id/searchDistance"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchDistance"
+        android:layout_marginTop="30dp"/>
+
+
+
+
+
+</RelativeLayout>
