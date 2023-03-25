@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="University"
             android:fontFamily="@font/comic_neue_bold"
-            android:id="@+id/uniName"
+            android:id="@+id/user_request_uniName"
             android:textColor="@color/black"
             android:layout_marginStart="5dp"
             android:layout_below="@id/usernameId"
@@ -49,7 +49,7 @@
         android:layout_marginStart="5dp"
         android:id="@+id/courseNameId"
         android:textColor="@color/black"
-        android:layout_toEndOf="@id/uniName"
+        android:layout_toEndOf="@id/user_request_uniName"
         android:layout_below="@id/usernameId"/>
 
     <TextView
@@ -65,7 +65,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/uniName"
+        android:layout_below="@id/user_request_uniName"
         android:layout_marginStart="5dp"
         android:textColor="@color/black"
         android:layout_toEndOf="@id/profile_image"
@@ -77,6 +77,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
+        android:layout_alignTop="@id/usernameId"
         android:id="@+id/addUserRequest"
         android:background="@drawable/border"
         android:layout_alignParentEnd="true"
