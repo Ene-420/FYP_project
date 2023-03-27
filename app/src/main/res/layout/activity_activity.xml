@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="Cancel"
+            android:id="@+id/cancel_btn"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/purple"
+            android:textAllCaps="false"
+            android:fontFamily="@font/comic_neue_bold"
+            android:textSize="20sp"
+            android:layout_weight="0.5"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:id="@+id/post_btn"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/purple"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            app:cornerRadius="15dp"
+            android:layout_weight="0.5"
+            />
+    </LinearLayout>
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Enter Text Here"
+            android:id="@+id/activity_text_box"
+            android:gravity="top"
+            android:layout_below="@id/linear"
+            android:background="@android:drawable/editbox_background_normal"
+            />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_activity_add_icon"
+            android:text="Add"
+            android:id="@+id/add_attachment_float"
+            app:tint="@color/white"
+            app:backgroundTint="@color/purple"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/activity_text_box"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/image_float"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/add_attachment_float"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_image_icon"
+        app:tint="@color/white"
+        app:backgroundTint="@color/purple" />
+
+
+
+</RelativeLayout>
+<!--    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:text="Enter Text Here"
+        android:gravity="top"
+        android:layout_below="@id/cancel_btn"
+        android:background="@android:drawable/editbox_background_normal"
+        />-->
+
+
+

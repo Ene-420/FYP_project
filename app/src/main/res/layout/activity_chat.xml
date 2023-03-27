@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity">
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chat_toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingBottom="4dp"
+        android:theme="?actionBarTheme"
+        android:background="@drawable/white_grey_border"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_back_icon"
+                android:id="@+id/back_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/face"
+                    android:id="@+id/user_chat_profile_pic"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="username"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/comic_neue_bold"/>
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chatRecyclerView"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/chatLayout"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/chat_toolbar"
+
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chatLayout"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#D6D6D6">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_image_icon"
+            android:layout_centerVertical="true"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/chat_message_bg"
+            android:hint="Message....."
+            android:ems="1"/>
+
+        <ImageButton
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/button_bg"
+            android:src="@drawable/ic_send_icon" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
