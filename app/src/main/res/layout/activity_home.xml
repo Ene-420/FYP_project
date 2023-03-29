@@ -12,20 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:id="@+id/appBarLayout"
         android:theme="@style/Theme.AppCompat.Light">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
+            app:title="Friends"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/main_menu"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="60dp"
+        android:layout_below="@id/appBarLayout"
         android:layout_alignParentBottom="true"/>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -36,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nav_bar"
+            app:itemTextColor="@color/color_select"
             app:labelVisibilityMode="selected"
             app:itemIconTint="@color/color_select"
             android:background="@color/purple"

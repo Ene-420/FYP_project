@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "523079746953",
+    "firebase_url": "https://fypchatproject-default-rtdb.firebaseio.com",
+    "project_id": "fypchatproject",
+    "storage_bucket": "fypchatproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523079746953:android:4710a6d633df9ae402cd58",
+        "android_client_info": {
+          "package_name": "com.example.fypproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523079746953-csbm0d8l85fkt13lff3hm438edej9abo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYEnYZVrA6gXPWnRbxFFks1Q07Q1QRDKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523079746953-csbm0d8l85fkt13lff3hm438edej9abo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

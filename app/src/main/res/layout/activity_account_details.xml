@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccoutDetails">
+    tools:context=".AccountDetails">
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/universityAutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -85,15 +85,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Confirm Details"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        app:cornerRadius="15dp"
         android:backgroundTint="@color/purple"
         android:fontFamily="@font/comic_neue_bold"
-        app:layout_constraintTop_toBottomOf="@+id/hobbiesList"
+        android:onClick="confirm"
+        android:text="Confirm Details"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/hobbiesList" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
