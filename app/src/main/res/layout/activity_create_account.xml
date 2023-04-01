@@ -62,7 +62,7 @@
         />
 
     <EditText
-        android:id="@+id/userNameText"
+        android:id="@+id/chatNameText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -87,7 +87,7 @@
         android:hint="D.O.B(Date Of Birth)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/chatNameText" />
 
 
     <Button
@@ -98,6 +98,7 @@
         android:fontFamily="@font/comic_neue_bold"
         android:onClick="confirmDetails"
         android:text="Confirm Details"
+        android:editable="false"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:cornerRadius="15dp"

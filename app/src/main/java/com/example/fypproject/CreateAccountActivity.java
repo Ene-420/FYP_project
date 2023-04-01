@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -158,7 +156,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         profile_img = findViewById(R.id.profile_imageView);
         firstName = findViewById(R.id.firstNameText);
         lastName = findViewById(R.id.lastNameText);
-        userName = findViewById(R.id.userNameText);
+        userName = findViewById(R.id.chatNameText);
         dob = findViewById(R.id.ageText);
         add_icon = findViewById(R.id.addProfilePic);
         user = new UserModel();
