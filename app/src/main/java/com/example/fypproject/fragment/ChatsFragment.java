@@ -9,12 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fypproject.Adapter.ChatsAdapter;
+import com.example.fypproject.Adapter.ContactsAdapter;
 import com.example.fypproject.R;
 
 
 public class ChatsFragment extends Fragment {
 
     RecyclerView chatsView, contactsView;
+    ContactsAdapter contactsAdapter;
+    ChatsAdapter chatsAdapter;
 
 
     public ChatsFragment() {
@@ -32,6 +36,7 @@ public class ChatsFragment extends Fragment {
 
         chatsView = view.findViewById(R.id.chatsRecyclerView);
         contactsView = view.findViewById(R.id.contactsRecyclerView);
+
 
         return view;
     }
