@@ -21,16 +21,22 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
-            <ImageView
-                android:layout_width="30dp"
+            <ImageButton
+                android:id="@+id/chat_back_btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:onClick="back"
+                android:scaleType="centerCrop"
+                android:scaleX="1"
+                android:scaleY="1"
                 android:src="@drawable/ic_back_icon"
-                android:id="@+id/back_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <LinearLayout
@@ -53,6 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/user_chat_username"
                     android:text="username"
                     android:textSize="25sp"
                     android:fontFamily="@font/comic_neue_bold"/>
@@ -90,7 +97,9 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_image_icon"
             android:layout_centerVertical="true"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:id="@+id/user_chat_gallery_icon"
+            style="?android:attr/borderlessButtonStyle"
+            android:visibility="visible"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -98,6 +107,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:padding="10dp"
+            android:id="@+id/user_chat_messagebox"
             android:layout_weight="1"
             android:background="@drawable/chat_message_bg"
             android:hint="Message....."
@@ -106,6 +116,7 @@
         <ImageButton
             android:layout_height="40dp"
             android:layout_width="40dp"
+            android:id="@+id/user_chat_send"
             style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/button_bg"
             android:src="@drawable/ic_send_icon" />

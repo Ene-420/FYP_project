@@ -1,6 +1,7 @@
 package com.example.fypproject.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fypproject.ChatActivity;
 import com.example.fypproject.R;
-import com.example.fypproject.UserModel;
+import com.example.fypproject.Model.UserModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,6 +43,15 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> 
         UserModel model = chatList.get(position);
         Picasso.get().load(model.getProfileImage()).placeholder(R.drawable.face).into(holder.chatProfileImage);
         holder.username.setText(model.getUserName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("user", model);
+                context.startActivity(intent);
+            }
+        });
 //        holder.lastMessage.setText(model.);
 //        holder.lastMessageTimeStamp.setText();
     }

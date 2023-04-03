@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fypproject.ChatActivity;
 import com.example.fypproject.R;
-import com.example.fypproject.UserModel;
+import com.example.fypproject.Model.UserModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

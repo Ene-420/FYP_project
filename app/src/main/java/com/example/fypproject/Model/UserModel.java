@@ -1,4 +1,4 @@
-package com.example.fypproject;
+package com.example.fypproject.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
