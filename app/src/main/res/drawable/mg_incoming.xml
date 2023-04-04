@@ -46,8 +46,8 @@
 
     <item android:right="10dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/purple_200" />
-            <corners android:bottomLeftRadius="1dp" android:radius="100dp" />
+            <solid android:color="#D6D6D8" />
+            <corners android:bottomLeftRadius="1dp" android:radius="40dp" />
         </shape>
     </item>
 </layer-list>

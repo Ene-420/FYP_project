@@ -27,7 +27,7 @@
             android:id="@+id/message_outgoing_extra_text"
             android:text="hiii helllo"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:padding="10dp"
             android:gravity="center"/>
 
@@ -37,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12:12"
+        android:textStyle="bold"
         android:id="@+id/message_outgoing_extra_timestamp"
         android:layout_marginEnd="10dp"
         android:layout_below="@id/message_outgoing_extra_layout"

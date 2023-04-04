@@ -3,11 +3,13 @@ package com.example.fypproject.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.fypproject.Adapter.ChatsAdapter;
 import com.example.fypproject.Adapter.ContactsAdapter;
@@ -43,6 +45,21 @@ public class ChatsFragment extends Fragment {
 
         userList = new ArrayList<>();
         chatsAdapter = new ChatsAdapter(getContext(), userList);
+
+
+        UserModel user = new UserModel();
+        user.setUserName("Ene400");
+
+
+
+        userList.add(user);
+
+        chatsView.setAdapter(chatsAdapter);
+
+        LinearLayoutManager layout = new LinearLayoutManager(getContext());
+        chatsView.setLayoutManager(layout);
+        //chatsAdapter.notifyDataSetChanged();
+
 
 
         return view;

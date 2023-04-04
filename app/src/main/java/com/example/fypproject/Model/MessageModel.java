@@ -1,9 +1,12 @@
 package com.example.fypproject.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MessageModel {
 
     private String message, userId;
-    private long timeStamp;
+    private String timeStamp;
 
     public MessageModel() {
     }
@@ -11,7 +14,7 @@ public class MessageModel {
     public MessageModel(String message, String userId, long timeStamp) {
         this.message = message;
         this.userId = userId;
-        this.timeStamp = timeStamp;
+        setTimeStamp(timeStamp);
     }
 
     public String getMessage() {
@@ -30,11 +33,15 @@ public class MessageModel {
         this.userId = userId;
     }
 
-    public long getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
     public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+
+        Date date = new Date(timeStamp);
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        String dateSet = format.format(date);
+        this.timeStamp = dateSet;
     }
 }
