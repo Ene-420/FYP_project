@@ -57,13 +57,19 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:text="Enter Text Here"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="What would you like to share ?"
+            android:padding="9dp"
+            android:fontFamily="@font/comic_neue_bold"
             android:id="@+id/activity_text_box"
             android:gravity="top"
             android:layout_below="@id/linear"
-            android:background="@android:drawable/editbox_background_normal"
+            android:background="@drawable/border"
+            android:maxHeight="540dp"
+            app:cornerRadius="4dp"
             />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
