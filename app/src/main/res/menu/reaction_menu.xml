@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/laughing_reaction"
+        android:icon="@drawable/laughing"
+        android:title="laugh_react"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/love_reaction"
+        android:icon="@drawable/love"
+        android:title="love_react"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/cool_reaction"
+        android:icon="@drawable/cool"
+        android:title="cool_react"
+        app:showAsAction="always" />
+
+</menu>
