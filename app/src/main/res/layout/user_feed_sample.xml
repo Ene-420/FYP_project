@@ -69,7 +69,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
@@ -81,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="1dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
+            android:layout_gravity=""
             android:id="@+id/feed_like"
             android:src="@drawable/ic_like_icon"
             android:clickable="true"
@@ -98,12 +99,17 @@
             android:id="@+id/feed_reaction"
             android:focusable="true"
             android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_reaction_icon" />
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_reaction_icon"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:padding="1dp"
+            android:id="@+id/feed_menu"
+            android:src="@drawable/ic_menu_icon"/>
 
 
     </LinearLayout>

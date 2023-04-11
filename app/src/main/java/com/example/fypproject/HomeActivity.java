@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.fypproject.fragment.ActivityFragment;
 import com.example.fypproject.fragment.ChatsFragment;
 import com.example.fypproject.fragment.SearchFragment;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -70,4 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatsFragment()).commit();
     }
+
+
+    BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.nav_bar);
 }

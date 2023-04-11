@@ -68,6 +68,32 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
                 });
             }
         });
+
+
+        holder.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu menu = new PopupMenu(context, holder.menu);
+                menu.getMenuInflater().inflate(R.menu.f_menu_icon, menu.getMenu());
+
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch(menuItem.getItemId()){
+                            case R.id.feed_menu_delete:
+                                break;
+                            case R.id.feed_menu_likes:
+                                break;
+                            case R.id.feed_menu_reactions:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+
+
+            }
+        });
     }
 
     @Override
@@ -77,7 +103,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView profile_img, thumbs_up, addReaction;
+        ImageView profile_img, thumbs_up, addReaction,  menu;
         TextView username, message, timestamp;
         public ViewHolder(@NonNull View itemView) {
 
@@ -89,6 +115,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
             profile_img = itemView.findViewById(R.id.feed_profile_img);
             thumbs_up = itemView.findViewById(R.id.feed_like);
             addReaction = itemView.findViewById(R.id.feed_reaction);
+            menu = itemView.findViewById(R.id.feed_menu);
         }
     }
 }
