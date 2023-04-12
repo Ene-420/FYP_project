@@ -42,7 +42,7 @@ public class AccountDetails extends AppCompatActivity {
         }
 
         else{
-            progressDialog.show();
+            //progressDialog.show();
             Intent intent = getIntent();
             UserModel userDetails = (UserModel) intent.getSerializableExtra("user");
 
@@ -50,18 +50,11 @@ public class AccountDetails extends AppCompatActivity {
             userDetails.setUniversity(university.getText().toString());
             userDetails.setHobbies(userHobbies);
 
-            database.getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .setValue(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            progressDialog.dismiss();
+            Intent intent1 = new Intent(getApplicationContext(), ConfirmActivity.class);
+            intent1.putExtra("user", userDetails);
+            startActivity(intent1);
 
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intent);
-
-                            finish();
-                        }
-                    });
+            finish();
 
 
         }
