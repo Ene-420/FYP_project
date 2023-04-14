@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SearchFragment">
 
 
@@ -42,11 +43,82 @@
         android:id="@+id/searchDistance"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/layout"
+        android:padding="2dp"
+        android:layout_below="@id/searchDistance">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:hint="Distance"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/distance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:hint="Distance"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:hint="Max Distance"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/max_Distance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:hint="Max Distance"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0.5dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:id="@+id/unit"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/unitAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:text="Unit"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
-        android:layout_below="@id/searchDistance"
+        android:layout_below="@id/layout"
         android:layout_marginTop="30dp"/>
 
 

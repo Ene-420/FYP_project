@@ -73,5 +73,5 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.nav_bar);
+    //BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.nav_bar);
 }

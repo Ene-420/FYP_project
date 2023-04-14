@@ -25,4 +25,16 @@
         <item>Raves</item>
         <item>Netflix</item>
     </string-array>
+
+
+    <integer-array name="distance">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+    </integer-array>
+
+    <string-array name="unit">
+        <item>M</item>
+        <item>Km</item>
+    </string-array>
 </resources>

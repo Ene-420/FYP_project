@@ -10,7 +10,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/face"
-        android:id="@+id/profile_image"
+        android:id="@+id/search_profile_image"
         android:layout_marginTop="10dp"
         android:padding="5dp"
         />
@@ -21,25 +21,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
-            android:id="@+id/usernameId"
+            android:id="@+id/search_usernameId"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:textSize="19sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:fontFamily="@font/comic_neue_bold"
-            android:layout_toEndOf="@id/profile_image"/>
+            android:layout_toEndOf="@id/search_profile_image"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="University"
             android:fontFamily="@font/comic_neue_bold"
-            android:id="@+id/user_request_uniName"
+            android:id="@+id/search_university"
             android:textColor="@color/black"
             android:layout_marginStart="5dp"
-            android:layout_below="@id/usernameId"
-            android:layout_toEndOf="@id/profile_image"/>
+            android:layout_below="@id/search_usernameId"
+            android:layout_toEndOf="@id/search_profile_image"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,28 +47,30 @@
         android:text="CourseName"
         android:fontFamily="@font/comic_neue_bold"
         android:layout_marginStart="5dp"
-        android:id="@+id/courseNameId"
+        android:id="@+id/search_courseNameId"
         android:textColor="@color/black"
-        android:layout_toEndOf="@id/user_request_uniName"
-        android:layout_below="@id/usernameId"/>
+        android:layout_toEndOf="@id/search_university"
+        android:layout_below="@id/search_usernameId"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="courseYr"
+        android:id="@+id/search_courseYr"
         android:fontFamily="@font/comic_neue_bold"
         android:layout_marginStart="5dp"
         android:textColor="@color/black"
-        android:layout_below="@id/usernameId"
-        android:layout_toEndOf="@id/courseNameId"/>
+        android:layout_below="@id/search_usernameId"
+        android:layout_toEndOf="@id/search_courseNameId"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_request_uniName"
+        android:layout_below="@id/search_university"
         android:layout_marginStart="5dp"
         android:textColor="@color/black"
-        android:layout_toEndOf="@id/profile_image"
+        android:id="@+id/search_hobbies"
+        android:layout_toEndOf="@id/search_profile_image"
         android:text="Hobbies"
         android:fontFamily="@font/comic_neue_bold"/>
 
@@ -77,8 +79,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
-        android:layout_alignTop="@id/usernameId"
-        android:id="@+id/addUserRequest"
+        android:layout_alignTop="@id/search_usernameId"
+        android:id="@+id/search_addUser"
         android:background="@drawable/border"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_add_icon"/>
