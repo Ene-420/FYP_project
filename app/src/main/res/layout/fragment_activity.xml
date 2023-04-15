@@ -18,6 +18,7 @@
         app:backgroundTint="@color/purple"
         app:srcCompat="@drawable/ic_activity_icon"
         app:tint="@color/white"
+        android:id="@+id/activity_post"
         android:layout_marginBottom="130dp"
         android:layout_marginEnd="30dp"
         android:layout_alignParentEnd="true"

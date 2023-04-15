@@ -61,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/user_chat_username"
                     android:text="username"
+                    android:textColor="@color/black"
                     android:textSize="25sp"
                     android:fontFamily="@font/comic_neue_bold"/>
             </LinearLayout>

@@ -19,6 +19,7 @@ import com.example.fypproject.Adapter.RequestAdapter;
 import com.example.fypproject.FriendRequestActivity;
 import com.example.fypproject.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SearchFragment extends Fragment {
@@ -29,6 +30,7 @@ public class SearchFragment extends Fragment {
     RequestAdapter adapter;
     AutoCompleteTextView  unit;
     TextInputEditText maxDistance, distance;
+    FirebaseDatabase database;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -41,6 +43,7 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        database = FirebaseDatabase.getInstance();
         userRequestCount = view.findViewById(R.id.user_request_count);
         friendRequest = view.findViewById(R.id.requestText);
         unit = view.findViewById(R.id.unitAutoCompleteTextView);
@@ -54,10 +57,6 @@ public class SearchFragment extends Fragment {
         ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, unitArray);
         unit.setAdapter(unitAdapter);
 
-
-        /*if (distance.getText() != null){
-            searchRadius.setProgress(Integer.parseInt(distance.getText().toString()));
-        }*/
 
         searchRadius.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -109,6 +108,8 @@ public class SearchFragment extends Fragment {
         });
 
         return view;
+
+
 
     }
 }

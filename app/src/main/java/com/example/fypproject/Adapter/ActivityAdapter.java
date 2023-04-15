@@ -1,6 +1,8 @@
 package com.example.fypproject.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +13,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fypproject.Model.MessageModel;
@@ -23,25 +27,34 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 
     Context context;
     ArrayList<MessageModel> list;
+
+    public ActivityAdapter(Context context, ArrayList<MessageModel> list) {
+        this.context = context;
+        this.list = list;
+    }
+
     @NonNull
     @Override
-    public ActivityAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vAdapter = LayoutInflater.from(context).inflate(R.layout.user_feed_sample, parent, false);
         return new ViewHolder(vAdapter);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull ActivityAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MessageModel model = list.get(position);
 
-        //holder.username.setText(model.);
+        holder.username.setText("Ene");
         //Picasso.get().load().placeholder(R.drawable.face).into(holder.profile_img);
         holder.message.setText(model.getMessage());
         holder.timestamp.setText(model.getTimeStamp());
 
         holder.addReaction.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
+
                 PopupMenu menu = new PopupMenu(context, holder.addReaction);
                 menu.getMenuInflater().inflate(R.menu.reaction_menu, menu.getMenu());
 
@@ -66,6 +79,10 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
                         return true;
                     }
                 });
+
+
+
+                menu.show();
             }
         });
 
@@ -90,8 +107,16 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
                         return false;
                     }
                 });
+                menu.show();
 
 
+            }
+        });
+
+        holder.thumbs_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.thumbs_up.setColorFilter(view.getResources().getColor(R.color.purple));
             }
         });
     }

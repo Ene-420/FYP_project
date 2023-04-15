@@ -45,7 +45,7 @@ public class ChatsFragment extends Fragment {
 
         userList = new ArrayList<>();
         chatsAdapter = new ChatsAdapter(getContext(), userList);
-
+        contactsAdapter = new ContactsAdapter(getContext(),  userList);
 
         UserModel user = new UserModel();
         user.setUserName("Ene400");
@@ -55,9 +55,12 @@ public class ChatsFragment extends Fragment {
         userList.add(user);
 
         chatsView.setAdapter(chatsAdapter);
+        contactsView.setAdapter(contactsAdapter);
 
-        LinearLayoutManager layout = new LinearLayoutManager(getContext());
-        chatsView.setLayoutManager(layout);
+        LinearLayoutManager chatsLayout = new LinearLayoutManager(getContext());
+        LinearLayoutManager contactsLayout = new LinearLayoutManager(getContext());
+        chatsView.setLayoutManager(chatsLayout);
+        contactsView.setLayoutManager(contactsLayout);
         //chatsAdapter.notifyDataSetChanged();
 
 
