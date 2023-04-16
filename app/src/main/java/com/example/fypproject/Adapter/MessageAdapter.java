@@ -67,23 +67,23 @@ public class MessageAdapter extends RecyclerView.Adapter {
         if(holder.getClass() == OutgoingViewHolder.class){
 
             ((OutgoingViewHolder)holder).outgoingMessage.setText(model.getMessage());
-            ((OutgoingViewHolder)holder).outgoingTimeStamp.setText(model.getTimeStamp());
+            ((OutgoingViewHolder)holder).outgoingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
 
         }
-        else if (holder.getClass() == OutgoingExtraViewHolder.class) {
+        /*else if (holder.getClass() == OutgoingExtraViewHolder.class) {
             ((OutgoingExtraViewHolder)holder).outgoingExtraMessage.setText(model.getMessage());
             ((OutgoingExtraViewHolder)holder).outgoingExtraTimeStamp.setText(model.getTimeStamp());
 
-        }
+        }*/
         else if (holder.getClass() == IncomingViewHolder.class) {
             ((IncomingViewHolder)holder).incomingMessage.setText(model.getMessage());
-            ((IncomingViewHolder)holder).incomingTimeStamp.setText(model.getTimeStamp());
+            ((IncomingViewHolder)holder).incomingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
 
         }
-        else if (holder.getClass() == IncomingExtraViewHolder.class) {
+        /*else if (holder.getClass() == IncomingExtraViewHolder.class) {
             ((IncomingExtraViewHolder)holder).incomingExtraMessage.setText(model.getMessage());
             ((IncomingExtraViewHolder)holder).incomingExtraTimeStamp.setText(model.getTimeStamp());
-        }
+        }*/
 
 
 

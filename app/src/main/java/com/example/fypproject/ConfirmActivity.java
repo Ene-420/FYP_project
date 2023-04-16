@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.fypproject.Model.LocationModel;
 import com.example.fypproject.Model.UserModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,12 +63,23 @@ public class ConfirmActivity extends AppCompatActivity {
                         .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                progressDialog.dismiss();
+                                LocationModel model = new LocationModel();
+                                model.setUserLongitude(userLocation.getLongitude());
+                                model.setUserLatittude(userLocation.getLatitude());
 
-                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                startActivity(intent);
+                                database.getReference().child("Location").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        progressDialog.dismiss();
 
-                                finish();
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(intent);
+
+                                        finish();
+
+                                    }
+                                });
+
                             }
                         });
             }

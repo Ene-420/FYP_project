@@ -1,5 +1,6 @@
 package com.example.fypproject;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +23,12 @@ import android.widget.TextView;
 import com.example.fypproject.Adapter.MessageAdapter;
 import com.example.fypproject.Model.MessageModel;
 import com.example.fypproject.Model.UserModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,6 +42,8 @@ public class ChatActivity extends AppCompatActivity {
     EditText messageText;
     RecyclerView message;
     MessageAdapter adapter;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
 
     public void back(View view){
@@ -50,8 +58,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
         Intent intent = getIntent();
         UserModel user = (UserModel) intent.getSerializableExtra("user");
+        String receiverId = user.getUserID();
+        String senderId = auth.getCurrentUser().getUid();
 
         send = findViewById(R.id.user_chat_send);
         gallery = findViewById(R.id.user_chat_gallery_icon);
@@ -98,14 +111,41 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        database.getReference().child("Chats").child(senderId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chats.clear();
+                for(DataSnapshot data: snapshot.getChildren()){
+                    MessageModel messageModel = data.getValue(MessageModel.class);
+                    messageModel.setUserId(data.getKey());
+
+                    chats.add(messageModel);
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageModel model = new MessageModel(messageText.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid(), new Date().getTime());
+                MessageModel model = new MessageModel(messageText.getText().toString(), senderId, new Date().getTime());
                 chats.add(model);
 
-                adapter.notifyDataSetChanged();
+                database.getReference().child("Chats").child(senderId).child(receiverId).push().setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        database.getReference().child(receiverId).child(senderId).push().setValue(model);
+                    }
+                });
+
+
             }
         });
 

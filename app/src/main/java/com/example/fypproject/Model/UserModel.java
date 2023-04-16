@@ -12,6 +12,8 @@ public class UserModel implements Serializable {
     private ArrayList<String> hobbies;
     private String profileImage;
 
+    private String lastMessage;
+
     public UserModel() {
     }
 
@@ -112,5 +114,13 @@ public class UserModel implements Serializable {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }

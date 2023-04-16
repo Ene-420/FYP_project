@@ -6,7 +6,7 @@ import java.util.Date;
 public class MessageModel {
 
     private String message, userId;
-    private String timeStamp;
+    private long timeStamp;
 
     public MessageModel() {
     }
@@ -14,7 +14,7 @@ public class MessageModel {
     public MessageModel(String message, String userId, long timeStamp) {
         this.message = message;
         this.userId = userId;
-        setTimeStamp(timeStamp);
+        this.timeStamp = timeStamp;
     }
 
     public String getMessage() {
@@ -33,15 +33,15 @@ public class MessageModel {
         this.userId = userId;
     }
 
-    public String getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    public String setTimeStamp(long timeStamp) {
 
         Date date = new Date(timeStamp);
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         String dateSet = format.format(date);
-        this.timeStamp = dateSet;
+        return dateSet;
     }
 }

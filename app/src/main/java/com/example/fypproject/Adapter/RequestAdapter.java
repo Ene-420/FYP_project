@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fypproject.R;
 import com.example.fypproject.Model.UserModel;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -54,6 +57,23 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserModel model = new UserModel();
+                model.setCourse(user.getCourse());
+                model.setCourseYr(user.getCourseYr());
+                model.setDob(user.getDob());
+                model.setHobbies(user.getHobbies());
+                model.setUniversity(user.getUniversity());
+                model.setUserName(user.getUserName());
+                model.setProfileImage(user.getProfileImage());
+
+                FirebaseDatabase.getInstance().getReference().child("Contacts").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(user.getUserID()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                list.remove(holder.getAdapterPosition());
+                            }
+                        });
+
 
             }
         });

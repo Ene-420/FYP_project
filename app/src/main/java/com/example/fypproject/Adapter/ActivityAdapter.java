@@ -48,7 +48,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         holder.username.setText("Ene");
         //Picasso.get().load().placeholder(R.drawable.face).into(holder.profile_img);
         holder.message.setText(model.getMessage());
-        holder.timestamp.setText(model.getTimeStamp());
+        holder.timestamp.setText(model.setTimeStamp(model.getTimeStamp()));
 
         holder.addReaction.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
