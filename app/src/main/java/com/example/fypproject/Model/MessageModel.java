@@ -5,16 +5,17 @@ import java.util.Date;
 
 public class MessageModel {
 
-    private String message, userId;
+    private String message, userId, messageType;
     private long timeStamp;
 
     public MessageModel() {
     }
 
-    public MessageModel(String message, String userId, long timeStamp) {
+    public MessageModel(String message, String userId, long timeStamp, String messageType) {
         this.message = message;
         this.userId = userId;
         this.timeStamp = timeStamp;
+        this.messageType = messageType;
     }
 
     public String getMessage() {
@@ -35,6 +36,14 @@ public class MessageModel {
 
     public long getTimeStamp() {
         return timeStamp;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
     }
 
     public String setTimeStamp(long timeStamp) {

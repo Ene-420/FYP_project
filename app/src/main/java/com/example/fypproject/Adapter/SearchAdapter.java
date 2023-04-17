@@ -12,7 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fypproject.Model.UserModel;
 import com.example.fypproject.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -51,9 +56,32 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot data : snapshot.getChildren()){
+                            if (data.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                UserModel user = data.getValue(UserModel.class);
+                                String userId = data.getKey();
 
+                                FirebaseDatabase.getInstance().getReference().child("Requests").child(model.getUserID()).child(userId).setValue(user)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                list.remove(holder.getAdapterPosition());
 
-                FirebaseDatabase.getInstance().getReference().child("Requests").child(model.getUserID())
+                                            }
+                                        });
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
         });

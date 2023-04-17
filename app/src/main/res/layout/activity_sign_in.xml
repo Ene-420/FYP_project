@@ -57,6 +57,7 @@
         android:fontFamily="@font/comic_neue_bold"
         android:onClick="signIn"
         android:text="Sign In"
+        android:id="@+id/signIn_Btn"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:cornerRadius="15dp"

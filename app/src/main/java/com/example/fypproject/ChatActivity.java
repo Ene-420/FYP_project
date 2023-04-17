@@ -1,6 +1,7 @@
 package com.example.fypproject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -135,7 +136,7 @@ public class ChatActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageModel model = new MessageModel(messageText.getText().toString(), senderId, new Date().getTime());
+                MessageModel model = new MessageModel(messageText.getText().toString(), senderId, new Date().getTime(), "Message");
                 chats.add(model);
 
                 database.getReference().child("Chats").child(senderId).child(receiverId).push().setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -164,7 +165,7 @@ public class ChatActivity extends AppCompatActivity {
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_GET_CONTENT);
                                 intent.setType("image/*");
-                                startActivityForResult(intent, 25);
+                                startActivityForResult(intent.createChooser(intent, "Select Image"), 25);
                                 break;
                             case R.id.open_camera:
                                 break;
@@ -178,5 +179,15 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 25 && resultCode ==RESULT_OK && data.getData()!= null){
+
+
+        }
     }
 }

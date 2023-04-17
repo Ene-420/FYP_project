@@ -18,7 +18,11 @@ import com.example.fypproject.R;
 import com.example.fypproject.Model.UserModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,22 +61,57 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserModel model = new UserModel();
-                model.setCourse(user.getCourse());
-                model.setCourseYr(user.getCourseYr());
-                model.setDob(user.getDob());
-                model.setHobbies(user.getHobbies());
-                model.setUniversity(user.getUniversity());
-                model.setUserName(user.getUserName());
-                model.setProfileImage(user.getProfileImage());
+                FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                FirebaseDatabase.getInstance().getReference().child("Contacts").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child(user.getUserID()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                list.remove(holder.getAdapterPosition());
+                            for (DataSnapshot data : snapshot.getChildren()){
+                                if(data.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                    UserModel model = data.getValue(UserModel.class);
+
+                                    UserModel modelUser = new UserModel();
+                                    modelUser.setCourse(user.getCourse());
+                                    modelUser.setCourseYr(user.getCourseYr());
+                                    modelUser.setDob(user.getDob());
+                                    modelUser.setHobbies(user.getHobbies());
+                                    modelUser.setUniversity(user.getUniversity());
+                                    modelUser.setUserName(user.getUserName());
+                                    modelUser.setProfileImage(user.getProfileImage());
+
+                                    FirebaseDatabase.getInstance().getReference().child("Contacts").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child(user.getUserID()).setValue(modelUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    FirebaseDatabase.getInstance().getReference().child("Contacts").child(user.getUserID()).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                            .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    FirebaseDatabase.getInstance().getReference().child("Requests").child(user.getUserID()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void unused) {
+                                                                            list.remove(holder.getAdapterPosition());
+                                                                        }
+                                                                    });
+
+                                                                }
+                                                            });
+
+
+                                                }
+                                            });
+                                }
+
                             }
-                        });
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
             }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if(viewType == OUTGOING_VIEW_TYPE){
-            View outView = LayoutInflater.from(context).inflate(R.layout.message_outgoing, parent, false);
+            View outView = LayoutInflater.from(context).inflate(R.layout.message_outgoing_extra, parent, false);
 
             return new OutgoingViewHolder(outView);
 
@@ -54,7 +55,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
         }
 
         else {
-            View incomingView = LayoutInflater.from(context).inflate(R.layout.message_incoming, parent, false);
+            View incomingView = LayoutInflater.from(context).inflate(R.layout.message_incoming_extra, parent, false);
 
             return new IncomingViewHolder(incomingView);
         }
@@ -65,9 +66,15 @@ public class MessageAdapter extends RecyclerView.Adapter {
         MessageModel model =  messageModels.get(position);
 
         if(holder.getClass() == OutgoingViewHolder.class){
+            if(model.getMessageType().equals("Message")){
 
             ((OutgoingViewHolder)holder).outgoingMessage.setText(model.getMessage());
             ((OutgoingViewHolder)holder).outgoingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
+            }
+            else{
+                ((OutgoingViewHolder)holder).outgoingImg.setVisibility(View.VISIBLE);
+
+            }
 
         }
         /*else if (holder.getClass() == OutgoingExtraViewHolder.class) {
@@ -132,7 +139,8 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
     public class IncomingViewHolder extends RecyclerView.ViewHolder {
 
-        TextView incomingMessage, incomingTimeStamp;
+        TextView incomingMessage, incomingTimeStamp, incomingImgTimeStamp;
+        ImageView incomingImg;
 
         public IncomingViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -141,12 +149,14 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
             incomingMessage = itemView.findViewById(R.id.message_incoming_text);
             incomingTimeStamp = itemView.findViewById(R.id.message_incoming_timestamp);
+            incomingImg = itemView.findViewById(R.id.message_incoming_img);
+            incomingImgTimeStamp = itemView.findViewById(R.id.message_incoming_img_timestamp);
 
             incomingTimeStamp.setVisibility(View.GONE);
         }
     }
 
-    public class IncomingExtraViewHolder extends RecyclerView.ViewHolder{
+  /*  public class IncomingExtraViewHolder extends RecyclerView.ViewHolder{
         TextView incomingExtraMessage, incomingExtraTimeStamp;
 
         public IncomingExtraViewHolder(@NonNull View itemView) {
@@ -158,11 +168,12 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
             incomingExtraTimeStamp.setVisibility(View.GONE);
         }
-    }
+    }*/
 
     public class OutgoingViewHolder extends RecyclerView.ViewHolder{
 
-        TextView outgoingMessage, outgoingTimeStamp;
+        TextView outgoingMessage, outgoingTimeStamp, outgoingImgTimeStamp;
+        ImageView outgoingImg;
         public OutgoingViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -170,12 +181,14 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
             outgoingMessage = itemView.findViewById(R.id.message_outgoing_text);
             outgoingTimeStamp = itemView.findViewById(R.id.message_outgoing_timestamp);
+            outgoingImg = itemView.findViewById(R.id.message_outgoing_img);
+            outgoingImgTimeStamp = itemView.findViewById(R.id.message_outgoing_img_timestamp);
 
             outgoingTimeStamp.setVisibility(View.GONE);
         }
     }
 
-    public class OutgoingExtraViewHolder extends RecyclerView.ViewHolder{
+/*    public class OutgoingExtraViewHolder extends RecyclerView.ViewHolder{
         TextView outgoingExtraMessage, outgoingExtraTimeStamp;
 
         public OutgoingExtraViewHolder(@NonNull View itemView) {
@@ -188,5 +201,5 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
             outgoingExtraTimeStamp.setVisibility(View.GONE);
         }
-    }
+    }*/
 }
