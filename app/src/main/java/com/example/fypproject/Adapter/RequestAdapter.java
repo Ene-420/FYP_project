@@ -51,8 +51,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel user = list.get(position);
 
+
+        if(user.getUniversity().equals("Nottingham Trent University")){
+            user.setUniversity("NTU");
+        }
+        String[] name = user.getFullName().split("_");
+
         Picasso.get().load(user.getProfileImage()).placeholder(R.drawable.face).into(holder.requestProfileImg);
-        holder.requestUserName.setText(user.getUserName());
+        holder.requestUserName.setText(name[0]);
         holder.requestUniversity.setText(user.getUniversity());
         holder.requestCourseName.setText(user.getCourse());
         holder.requestCourseYr.setText(user.getCourseYr());
@@ -68,6 +74,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
                             for (DataSnapshot data : snapshot.getChildren()){
                                 if(data.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                                     UserModel model = data.getValue(UserModel.class);
+
 
                                     UserModel modelUser = new UserModel();
                                     modelUser.setCourse(user.getCourse());
@@ -90,6 +97,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
                                                                         @Override
                                                                         public void onSuccess(Void unused) {
                                                                             list.remove(holder.getAdapterPosition());
+                                                                            notifyItemRemoved(holder.getAdapterPosition());
+                                                                            notifyItemRangeChanged(holder.getAdapterPosition(), list.size());
                                                                         }
                                                                     });
 

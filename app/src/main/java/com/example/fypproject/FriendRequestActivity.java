@@ -50,7 +50,7 @@ public class FriendRequestActivity extends AppCompatActivity {
         requestView.setAdapter(adapter);
         requestView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        database.getReference().child("Request").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        database.getReference().child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

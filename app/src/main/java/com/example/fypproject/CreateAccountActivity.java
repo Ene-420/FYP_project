@@ -76,6 +76,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             Uri sFile = data.getData();
             profile_img.setImageURI(sFile);
+            user.setProfileImage(sFile.toString());
 
             final StorageReference reference = storage.getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .child("ProfileImage");
@@ -137,7 +138,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 user.setDob(dob.getText().toString());
                 user.setUserName("@"+firstName.getText().toString()+"_"+new RandomIdGenerator().randomAlphaValue());
 
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AccountDetails.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
 

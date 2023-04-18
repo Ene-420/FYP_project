@@ -4,9 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import com.example.fypproject.fragment.ActivityFragment;
 import com.example.fypproject.fragment.ChatsFragment;
@@ -19,7 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
 
     Fragment selectFragment;
+    Toolbar toolbar;
     BottomNavigationView bottomNav;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -28,11 +41,12 @@ public class HomeActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.app_logOut:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.app_settings:
+                Log.i("Settings", "1");
                 break;
             default:
                 break;
@@ -45,6 +59,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //toolbar = findViewById(R.id.main_toolbar);
+
+
+        //setSupportActionBar(toolbar);
+        //setActionBar(toolbar);
+
+        //setSupportActionBar(toolbar);
         bottomNav = findViewById(R.id.nav_bar);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

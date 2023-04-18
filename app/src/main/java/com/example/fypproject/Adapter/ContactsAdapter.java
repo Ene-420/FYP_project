@@ -40,8 +40,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel model = userContacts.get(position);
 
+
         Picasso.get().load(model.getProfileImage()).placeholder(R.drawable.face).into(holder.contactProfilePic);
-        holder.contactName.setText(model.getUserName());
+        String[] name = model.getFullName().split("_");
+        holder.contactName.setText(name[0]);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -48,6 +48,7 @@ public class AccountDetails extends AppCompatActivity {
 
             userDetails.setCourse(course.getText().toString());
             userDetails.setUniversity(university.getText().toString());
+            userDetails.setCourseYr(courseYr.getText().toString());
             userDetails.setHobbies(userHobbies);
 
             Intent intent1 = new Intent(getApplicationContext(), ConfirmActivity.class);

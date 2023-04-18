@@ -1,10 +1,12 @@
 package com.example.fypproject.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,11 +48,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel model = list.get(position);
 
+        if(model.getUniversity().equals("Nottingham Trent University")){
+            model.setUniversity("NTU");
+        }
         Picasso.get().load(model.getProfileImage()).placeholder(R.drawable.face).into(holder.profile_img);
         holder.username.setText(model.getUserName());
         holder.university.setText(model.getUniversity());
         holder.courseYr.setText(model.getCourseYr());
         holder.hobbies.setText(model.getHobbies().toString());
+        holder.courseName.setText(model.getCourse());
 
 
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,12 +69,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                             if (data.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                                 UserModel user = data.getValue(UserModel.class);
                                 String userId = data.getKey();
+                                Log.i("Userid: ", model.getUserID());
 
                                 FirebaseDatabase.getInstance().getReference().child("Requests").child(model.getUserID()).child(userId).setValue(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 list.remove(holder.getAdapterPosition());
+                                                notifyItemRemoved(holder.getAdapterPosition());
+                                                notifyItemRangeChanged(holder.getAdapterPosition(), list.size());
 
                                             }
                                         });
@@ -96,8 +105,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView profile_img;
-        TextView username, courseYr, university, hobbies;
-        Button addBtn;
+        TextView username, courseYr, university, hobbies, courseName;
+        ImageButton addBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -106,6 +115,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             courseYr = itemView.findViewById(R.id.search_courseYr);
             university = itemView.findViewById(R.id.search_university);
             addBtn = itemView.findViewById(R.id.search_addUser);
+            hobbies = itemView.findViewById(R.id.search_hobbies);
+            courseName = itemView.findViewById(R.id.search_courseNameId);
+
         }
     }
 }
