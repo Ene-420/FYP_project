@@ -51,15 +51,16 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel user = list.get(position);
 
-
+        //String uni;
         if(user.getUniversity().equals("Nottingham Trent University")){
+             //uni = "NTU";
+            holder.requestUniversity.setText("NTU");
             user.setUniversity("NTU");
         }
         String[] name = user.getFullName().split("_");
 
         Picasso.get().load(user.getProfileImage()).placeholder(R.drawable.face).into(holder.requestProfileImg);
         holder.requestUserName.setText(name[0]);
-        holder.requestUniversity.setText(user.getUniversity());
         holder.requestCourseName.setText(user.getCourse());
         holder.requestCourseYr.setText(user.getCourseYr());
         holder.requestHobbies.setText(user.getHobbies().toString());
@@ -77,6 +78,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
 
                                     UserModel modelUser = new UserModel();
+                                    modelUser.setFullName(user.getFullName());
                                     modelUser.setCourse(user.getCourse());
                                     modelUser.setCourseYr(user.getCourseYr());
                                     modelUser.setDob(user.getDob());
@@ -93,7 +95,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
                                                             .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
-                                                                    FirebaseDatabase.getInstance().getReference().child("Requests").child(user.getUserID()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    FirebaseDatabase.getInstance().getReference().child("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                         @Override
                                                                         public void onSuccess(Void unused) {
                                                                             list.remove(holder.getAdapterPosition());

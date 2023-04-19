@@ -64,7 +64,6 @@ public class ChatsFragment extends Fragment {
 
 
 
-        contactList.add(user);
 
         chatsView.setAdapter(chatsAdapter);
         contactsView.setAdapter(contactsAdapter);

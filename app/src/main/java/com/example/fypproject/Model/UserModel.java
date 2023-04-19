@@ -36,6 +36,10 @@ public class UserModel implements Serializable {
         this.fullName = firstName +"_"+ lastName;
     }
 
+
+    public void setFullName(String Name) {
+        this.fullName = Name;
+    }
     public String getDob() {
         return dob;
     }

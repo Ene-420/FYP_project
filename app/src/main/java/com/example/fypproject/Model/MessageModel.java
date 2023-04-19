@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class MessageModel {
 
-    private String message, userId, messageType;
+    private String message, userId, messageType, messageId;
     private long timeStamp;
 
     public MessageModel() {
@@ -16,6 +16,14 @@ public class MessageModel {
         this.userId = userId;
         this.timeStamp = timeStamp;
         this.messageType = messageType;
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public String getMessage() {

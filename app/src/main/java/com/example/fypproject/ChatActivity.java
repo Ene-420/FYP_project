@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -28,8 +29,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -45,6 +50,8 @@ public class ChatActivity extends AppCompatActivity {
     MessageAdapter adapter;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    FirebaseStorage storage;
+    String receiverId;
 
 
     public void back(View view){
@@ -61,10 +68,11 @@ public class ChatActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         Intent intent = getIntent();
         UserModel user = (UserModel) intent.getSerializableExtra("user");
-        String receiverId = user.getUserID();
+        receiverId = user.getUserID();
         String senderId = auth.getCurrentUser().getUid();
 
         send = findViewById(R.id.user_chat_send);
@@ -112,13 +120,13 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        database.getReference().child("Chats").child(senderId).addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Chats").child(senderId).child(receiverId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chats.clear();
                 for(DataSnapshot data: snapshot.getChildren()){
                     MessageModel messageModel = data.getValue(MessageModel.class);
-                    messageModel.setUserId(data.getKey());
+                    messageModel.setMessageId(data.getKey());
 
                     chats.add(messageModel);
                 }
@@ -137,12 +145,13 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MessageModel model = new MessageModel(messageText.getText().toString(), senderId, new Date().getTime(), "Message");
-                chats.add(model);
+                //chats.add(model);
 
+                messageText.setText("");
                 database.getReference().child("Chats").child(senderId).child(receiverId).push().setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        database.getReference().child(receiverId).child(senderId).push().setValue(model);
+                        database.getReference().child("Chats").child(receiverId).child(senderId).push().setValue(model);
                     }
                 });
 
@@ -186,7 +195,31 @@ public class ChatActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 25 && resultCode ==RESULT_OK && data.getData()!= null){
+            Uri imgFile = data.getData();
 
+            StorageReference reference = storage.getReference().child(auth.getCurrentUser().getUid()).child(receiverId).child("ImageFiles");
+
+            DatabaseReference dReference = database.getReference().child("Chats").child(auth.getCurrentUser().getUid()).child(receiverId).push();
+            String messageImageID = dReference.getKey();
+            reference.child(messageImageID +".jpg").putFile(imgFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    reference.child(messageImageID +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            MessageModel model = new MessageModel(uri.toString(), auth.getCurrentUser().getUid(), new Date().getTime(), "Image");
+
+                            database.getReference().child("Chats").child(auth.getCurrentUser().getUid()).child(receiverId).push().setValue(model)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    database.getReference().child("Chats").child(receiverId).child(auth.getCurrentUser().getUid()).push().setValue(model);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
 
         }
     }

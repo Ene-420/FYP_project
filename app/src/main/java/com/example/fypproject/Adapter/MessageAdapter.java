@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fypproject.Model.MessageModel;
 import com.example.fypproject.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -72,7 +73,10 @@ public class MessageAdapter extends RecyclerView.Adapter {
             ((OutgoingViewHolder)holder).outgoingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
             }
             else{
+                ((OutgoingViewHolder)holder).outgoingMessage.setVisibility(View.GONE);
+                ((OutgoingViewHolder)holder).outgoingTimeStamp.setVisibility(View.GONE);
                 ((OutgoingViewHolder)holder).outgoingImg.setVisibility(View.VISIBLE);
+                Picasso.get().load(model.getMessage()).into(((OutgoingViewHolder) holder).outgoingImg);
 
             }
 
@@ -83,8 +87,16 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
         }*/
         else if (holder.getClass() == IncomingViewHolder.class) {
-            ((IncomingViewHolder)holder).incomingMessage.setText(model.getMessage());
-            ((IncomingViewHolder)holder).incomingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
+            if(model.getMessageType().equals("Message")) {
+                ((IncomingViewHolder) holder).incomingMessage.setText(model.getMessage());
+                ((IncomingViewHolder) holder).incomingTimeStamp.setText(model.setTimeStamp(model.getTimeStamp()));
+            }
+            else{
+                ((IncomingViewHolder) holder).incomingMessage.setVisibility(View.GONE);
+                ((IncomingViewHolder) holder).incomingTimeStamp.setVisibility(View.GONE);
+                ((IncomingViewHolder) holder).incomingImg.setVisibility(View.VISIBLE);
+                Picasso.get().load(model.getMessage()).into(((IncomingViewHolder) holder).incomingImg);
+            }
 
         }
         /*else if (holder.getClass() == IncomingExtraViewHolder.class) {
@@ -119,14 +131,14 @@ public class MessageAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
 
         if(messageModels.get(position).getUserId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-            outgoingCount++;
-            incomingCount =0;
+//            outgoingCount++;
+//            incomingCount =0;
             return OUTGOING_VIEW_TYPE;
 
         }
         else{
-            incomingCount++;
-            outgoingCount=0;
+//            incomingCount++;
+//            outgoingCount=0;
             return INCOMING_VIEW_TYPE;
 
         }
@@ -147,12 +159,13 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
 
 
-            incomingMessage = itemView.findViewById(R.id.message_incoming_text);
-            incomingTimeStamp = itemView.findViewById(R.id.message_incoming_timestamp);
+            incomingMessage = itemView.findViewById(R.id.message_incoming_extra_text);
+            incomingTimeStamp = itemView.findViewById(R.id.message_incoming_extra_timestamp);
             incomingImg = itemView.findViewById(R.id.message_incoming_img);
             incomingImgTimeStamp = itemView.findViewById(R.id.message_incoming_img_timestamp);
 
             incomingTimeStamp.setVisibility(View.GONE);
+            incomingImg.setVisibility(View.GONE);
         }
     }
 
@@ -179,12 +192,13 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
 
 
-            outgoingMessage = itemView.findViewById(R.id.message_outgoing_text);
-            outgoingTimeStamp = itemView.findViewById(R.id.message_outgoing_timestamp);
+            outgoingMessage = itemView.findViewById(R.id.message_outgoing_extra_text);
+            outgoingTimeStamp = itemView.findViewById(R.id.message_outgoing_extra_timestamp);
             outgoingImg = itemView.findViewById(R.id.message_outgoing_img);
             outgoingImgTimeStamp = itemView.findViewById(R.id.message_outgoing_img_timestamp);
 
             outgoingTimeStamp.setVisibility(View.GONE);
+            outgoingImg.setVisibility(View.GONE);
         }
     }
 
